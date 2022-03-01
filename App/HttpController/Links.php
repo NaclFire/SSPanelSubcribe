@@ -13,7 +13,8 @@ class Links extends Controller
     public function index()
     {
         // 查询 token 对应记录
-        $sToken = Link::where('type', 11)->where('token', $this->request()->getQueryParam('token'))->first();
+        // $sToken = Link::where('type', 11)->where('token', $this->request()->getQueryParam('token'))->first();
+        $sToken = Link::where('token', $this->request()->getQueryParam('token'))->first();
         if ($sToken === null) {
             // token 不存在
             return $this->response()

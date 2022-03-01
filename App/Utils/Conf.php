@@ -11,7 +11,7 @@ class Conf
      * 获取匹配的节点
      *
      * @param array $Proxy 节点
-     * @param array $Rule  匹配规则
+     * @param array $Rule 匹配规则
      *
      * @return array|null
      */
@@ -72,9 +72,9 @@ class Conf
     /**
      * 自定义配置文件生成 Surge 托管配置
      *
-     * @param User   $User          用户
-     * @param string $AllProxys     Surge 格式的全部节点
-     * @param array  $Nodes         节点数组
+     * @param User $User 用户
+     * @param string $AllProxys Surge 格式的全部节点
+     * @param array $Nodes 节点数组
      * @param string $SourceContent 配置内容
      *
      * @return string
@@ -163,7 +163,7 @@ class Conf
     /**
      * Surge 配置中的 ProxyGroup
      *
-     * @param array $Nodes       全部节点数组
+     * @param array $Nodes 全部节点数组
      * @param array $ProxyGroups Surge 策略组定义
      *
      * @return array
@@ -201,7 +201,7 @@ class Conf
      * Surge ProxyGroup 去除无用策略组
      *
      * @param array $ProxyGroups 策略组
-     * @param array $checks      要检查的策略组名
+     * @param array $checks 要检查的策略组名
      *
      * @return array
      */
@@ -294,8 +294,8 @@ class Conf
     /**
      * 自定义配置文件生成 Clash 配置
      *
-     * @param object $User          用户
-     * @param array  $AllProxys     全部节点数组
+     * @param object $User 用户
+     * @param array $AllProxys 全部节点数组
      * @param string $SourceContent 远程配置内容
      *
      * @return string
@@ -314,6 +314,7 @@ class Conf
         }
 
         $tmp = $Configs['General'];
+        $tmp['dns'] = $Configs['DNS'];
         $tmp['proxies'] = $Proxys;
         if (isset($Configs['Proxy Group'])) {
             $Configs['ProxyGroup'] = $Configs['Proxy Group'];
@@ -340,7 +341,7 @@ class Conf
     /**
      * Clash 配置中的 ProxyGroup
      *
-     * @param array $Nodes       全部节点数组
+     * @param array $Nodes 全部节点数组
      * @param array $ProxyGroups Clash 策略组定义
      *
      * @return array
@@ -387,7 +388,7 @@ class Conf
      * Clash ProxyGroup 去除无用策略组
      *
      * @param array $ProxyGroups 策略组
-     * @param array $checks      要检查的策略组名
+     * @param array $checks 要检查的策略组名
      *
      * @return array
      */

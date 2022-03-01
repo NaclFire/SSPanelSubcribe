@@ -36,10 +36,11 @@ class User extends Models
 
     public function getUuid()
     {
-        return Uuid::uuid3(
+		return $this->attributes['uuid'];
+       /** return Uuid::uuid3(
             Uuid::NAMESPACE_DNS,
             $this->attributes['id'] . '|' . $this->attributes['passwd']
-        )->toString();
+        )->toString();*/
     }
 
     public function getMuMd5()
@@ -307,7 +308,7 @@ class User extends Models
      */
     public function getSubToken():? string
     {
-        $Elink = Link::where('type', 11)->where('userid', $this->id)->first();
+        $Elink = Link::where('userid', $this->id)->first();
         return ($Elink != null ? $Elink->token : null);
     }
 

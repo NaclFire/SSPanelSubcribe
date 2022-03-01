@@ -177,11 +177,11 @@ class Subcribe
         $info_array = (count(Config::getInstance()->getConf('SUB.sub_message')) != 0 ? (array) Config::getInstance()->getConf('SUB.sub_message') : []);
         if (strtotime($user->expire_in) > time()) {
             if ($user->transfer_enable == 0) {
-                $unusedTraffic = '剩余流量：0';
+                $unusedTraffic = '请勿使用：剩余流量：0';
             } else {
-                $unusedTraffic = '剩余流量：' . $user->unusedTraffic();
+                $unusedTraffic = '请勿使用：剩余流量：' . $user->unusedTraffic();
             }
-            $expire_in = '过期时间：';
+            $expire_in = '请勿使用：过期时间：';
             if ($user->class_expire != '1989-06-04 00:05:00') {
                 $userClassExpire = explode(' ', $user->class_expire);
                 $expire_in .= $userClassExpire[0];
@@ -413,14 +413,13 @@ class Subcribe
                 $Proxys[] = $Proxy;
             }
         }
-        if (isset($opts['profiles']) && in_array($opts['profiles'], array_keys($_ENV['Clash_Profiles']))) {
+        if (isset($opts['profiles']) && in_array($opts['profiles'], array_keys( Config::getInstance()->getConf('Clash_Profiles')))) {
             $Profiles = $opts['profiles'];
             $userapiUrl .= ('&profiles=' . $Profiles);
         } else {
             $Profiles = Config::getInstance()->getConf('SUB.Clash_DefaultProfiles'); // 默认策略组
         }
-
-        return Conf::getClashConfs($user, $Proxys, $_ENV['Clash_Profiles'][$Profiles]);
+        return Conf::getClashConfs($user, $Proxys,  Config::getInstance()->getConf('Clash_Profiles.'.$Profiles));
     }
 
     /**
